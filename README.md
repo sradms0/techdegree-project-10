@@ -13,11 +13,11 @@ $ npm start
         * The library.db file should contain 3 tables. Create a Sequelize model for a books table, a patrons table, and a loans table. 
           There are no timestamps.
             * The books table should have the following columns: 
-              - [ ] id an integer, title a string, author a string, genre a string and first_published an integer.
+              - [X] id an integer, title a string, author a string, genre a string and first_published an integer.
             * The patrons table should have the following columns: 
-              - [ ] id an integer, first_name (string), last_name (string), address (string), email (string), library_id (string) and zip_code ( integer).
+              - [X] id an integer, first_name (string), last_name (string), address (string), email (string), library_id (string) and zip_code ( integer).
             * The loans table should have the following columns: 
-              - [ ] id (integer), book_id (integer), patron_id (integer), loaned_on (date), return_by (date) and returned_on (date).
+              - [X] id (integer), book_id (integer), patron_id (integer), loaned_on (date), return_by (date) and returned_on (date).
 
     * Home Screen
         * As a librarian, I should have a home screen so I can access functionality easily with a single click. See home.html for an example. 
