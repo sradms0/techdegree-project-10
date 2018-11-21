@@ -1,12 +1,16 @@
 'use strict';
 
 const express = require('express');
-const router = express.Router();
+const { books, patrons, loans } = require('../models');
 
 // helpers
-const setTableHeaders = require('../templatePrep').setTableHeaders;
-const setTitle = require('../templatePrep').setTitle;
-const sliceUrl = require('../templatePrep').sliceUrl;
+const {
+    setTableHeaders,
+    setTitle,
+    sliceUrl 
+} = require('../templatePrep');
+
+const router = express.Router();
 
 router.get('/', (req, res) => {
     // redirect to 'all' filter of subject (base url that was entered)

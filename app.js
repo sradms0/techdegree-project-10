@@ -2,6 +2,8 @@
 
 'use strict';
 
+const { sequelize } = require('./models');
+
 const express = require('express');
 
 const app = express();
@@ -16,4 +18,10 @@ app.use(mainRoutes);
 // dynamically set base routes
 app.use(/\/books|\/patrons|\/loans/, infoRoutes);
 
-app.listen(process.env.PORT || 3000, () => console.log('Application running on localhost:3000'));
+sequelize.sync()
+.then(() => {
+    app.listen(process.env.PORT || 3000, () => console.log('Application running on localhost:3000'));
+});
+
+
+
