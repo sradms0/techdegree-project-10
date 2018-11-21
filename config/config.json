@@ -1,0 +1,11 @@
+{
+  "development": {
+    "database": "db",
+    "dialect": "sqlite",
+    "storage": "./library.db",
+    "define": {
+      "timestamps": false
+    },
+    "operatorsAliases": false
+  }
+}
