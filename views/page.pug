@@ -2,14 +2,16 @@ extends layout
 block content
     h1= title
 
-    //-don't show filer when creating new item
-    //-or when viewing patron data
-    if type != 'new' && subject != 'patrons'
-        include includes/filterHeader
-
     //-show only table when viewing data
     if type != 'new'
-        p: a(href="new", class="button", class="button") Create New #{subject}
+        p: a(href="new", class="button", class="button") Create New #{title.slice(0,-1)}
+
+        //-don't show filer when creating new item
+        //-or when viewing patron data
+        if type != 'new' && subject != 'patrons'
+            include includes/filterHeader
+
         include includes/table
+
     else
         include includes/form
