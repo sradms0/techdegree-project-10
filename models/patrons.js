@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     zip_code: DataTypes.INTEGER
   }, {});
   patrons.associate = function(models) {
-    // associations can be defined here
+    patrons.hasMany(models.loans, {foreignKey:'patron_id'});
   };
   return patrons;
 };
