@@ -5,5 +5,7 @@ table
             each tableHeader in tableHeaders
                 th= tableHeader
     tbody
-        tr
-            //-td 
+        each row in rows
+            tr
+                each col in row 
+                    td= col
