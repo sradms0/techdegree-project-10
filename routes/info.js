@@ -10,6 +10,7 @@ const {
     sliceUrl 
 } = require('../templatePrep');
 const queryBuilder = require('../queryBuilder');
+const rowsParser = require('../rowsParser');
 
 const router = express.Router();
 
