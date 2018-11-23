@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-const { books, patrons, loans } = require('../models');
+const { sequelize: {models} } = require('../models');
 
 // helpers
 const {
@@ -9,6 +9,7 @@ const {
     setTitle,
     sliceUrl 
 } = require('../templatePrep');
+const queryBuilder = require('../queryBuilder');
 
 const router = express.Router();
 
