@@ -15,7 +15,8 @@ module.exports = (data, subject) => {
                             data.map(i => {
                                 const { loaned_on, return_by, returned_on, ...rest } = values(i);
                                 const { book: { title }, patron: { first_name, last_name } } = rest
-                                return ( {'book': title, 'patron': join(first_name,last_name), loaned_on, return_by, returned_on} );
+                                const action = !returned_on ? 'Return Book' : null;
+                                return ( {'book': title, 'patron': join(first_name,last_name), loaned_on, return_by, returned_on, action} );
                             })
                     )
     }
