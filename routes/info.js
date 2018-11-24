@@ -4,11 +4,7 @@ const express = require('express');
 const { sequelize: {models} } = require('../models');
 
 // helpers
-const {
-    setTableHeaders,
-    setTitle,
-    sliceUrl 
-} = require('../templatePrep');
+const templateArgs = require('../templateArgs');
 const queryBuilder = require('../queryBuilder');
 const rowsParser = require('../rowsParser');
 
@@ -20,17 +16,14 @@ router.get('/', (req, res) => {
 });
 
 // create dynamic routes
-router.get(/all|overdue|checked|new/, (req, res) => {
-    const subject = sliceUrl(req.baseUrl);
-    const type = sliceUrl(req.url);
-    const title = setTitle(subject, type);
-    const tableHeaders = setTableHeaders(subject);
-
-    queryBuilder(models, subject, type)
-        .then(data => {
-            const rows = rowsParser(data, subject);
-            res.render('page', {title, subject, type, tableHeaders, rows});
-        })
+router.get(/all|overdue|checked/, (req, res) => {
+    const args = templateArgs(req, res);
+    queryBuilder(models, args.subject, args.type)
+    .then(data => {
+        const rows = rowsParser(data, args.subject);
+        args.rows = rows;
+        res.render('page', args);
+    })
 });
 
 module.exports = router;
