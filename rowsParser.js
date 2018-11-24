@@ -2,22 +2,21 @@
 
 module.exports = (data, subject) => {
     console.log(subject);
-    const values = obj => Object.values(obj.dataValues);
-    const joinName = n => [ values(n)[0]+' '+values(n)[1] ];
+    const values = obj => obj.dataValues;
+    const join = (first,last) => first.concat(' ', last);
     const parse = {
-        'books':    () => data.map(i => values(i)),
-        'patrons':  () => data.map(i => [...joinName(i), ...values(i).slice(2) ]),
+        // clean up objects returned from queries for passing to pug
+        'books':    () => data.map(i => (JSON.parse( JSON.stringify(values(i)).replace('title', 'book')) )),
+        'patrons':  () => data.map(i => {
+                                const {first_name, last_name, ...patron} = values(i);
+                                return Object.assign({'patron': join(first_name,last_name)}, patron);
+                            }),
         'loans':    () => (
                             data.map(i => {
-                                const dataValues = values(i);
-                                // slice and get values of books, patrons, and move loans to end
-                                const book = values(dataValues.slice(3,4)[0])[0];
-                                const patron = joinName(dataValues.slice(4)[0])[0];
-                                const loan = dataValues.slice(0,3);
-
-                                return [book, patron, ...loan];
+                                const { loaned_on, return_by, returned_on, ...rest } = values(i);
+                                const { book: { title }, patron: { first_name, last_name } } = rest
+                                return ( {'book': title, 'patron': join(first_name,last_name), loaned_on, return_by, returned_on} );
                             })
-
                     )
     }
     return parse[subject]();
