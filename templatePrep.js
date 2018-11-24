@@ -58,10 +58,13 @@ module.exports = {
             default:
                 break;
         }
-
+        // change to subject to books for titling
+        if (subject === 'loans' && type === 'checked') subject = 'books';
         title += subject[0].toUpperCase()+subject.slice(1);
         // if creating a new item, slice off 's' in title
         if (type === 'new') title = title.slice(0, -1);
         return title;
-    }
+    },
+    // for create button 
+    setItem: subject => subject[0].toUpperCase()+subject.slice(1,-1)
 };
