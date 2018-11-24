@@ -7,8 +7,8 @@ table
     tbody
         each row in rows
             tr
-                each col, idx in row 
-                    if (subject === 'loans' && (idx === 0 || idx === 1)) || idx === 0 
-                        td: a(href="")= col
+                each val, key in row 
+                    if key === 'book' || key === 'patron'
+                        td: a(href=`/${key}s/details`)= val
                     else
-                        td= col
+                        td= val
