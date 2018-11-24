@@ -11,4 +11,7 @@ table
                     if key === 'book' || key === 'patron'
                         td: a(href=`/${key}s/details`)= val
                     else
-                        td= val
+                        if key === 'action' && val
+                            td: a(href="books/return" class="button")= val
+                        else
+                            td= val
