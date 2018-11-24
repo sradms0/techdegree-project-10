@@ -45,10 +45,10 @@ $ npm start
           Books Listing Page so I can quickly see the state of the library. Examples: all_books.html, overdue_books.html and checked_books.html.
             - [ ] Include a button to create a new book.
         * Display a table of books with the following columns:
-            - [ ] Book Title
-            - [ ] Author
-            - [ ] Genre
-            - [ ] Year Released/First Published
+            - [X] Book Title
+            - [X] Author
+            - [X] Genre
+            - [X] Year Released/First Published
         * Table should include the following links:
             - [ ] Book titles should link to the book's detail page.
 
@@ -75,12 +75,12 @@ $ npm start
         - [ ] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
         - [ ] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
         * Display a Loan History table with the following columns:
-            - [ ] Book
-            - [ ] Patron
-            - [ ] Loaned on
-            - [ ] Return by
-            - [ ] Returned on
-            - [ ] Action
+            - [X] Book
+            - [X] Patron
+            - [X] Loaned on
+            - [X] Return by
+            - [X] Returned on
+            - [X] Action
 
         * Table should include the following links:
             - [ ] The “Book” field links to the book.
@@ -91,12 +91,12 @@ $ npm start
           the state of the loan. Examples all_loans.html, overdue_loans.html and checked_loans.html.
         - [ ] Include a button that links to the New Loan Page.
         * Display a table of loans with the following columns:
-            - [ ] Book title
-            - [ ] Patron
-            - [ ] Loaned on
-            - [ ] Return by
-            - [ ] Returned on
-            - [ ] Action
+            - [X] Book title
+            - [X] Patron
+            - [X] Loaned on
+            - [X] Return by
+            - [X] Returned on
+            - [X] Action
         * Table should include the following links:
             - [ ] The “Patron” field links to the patron who checked out the book.
             - [ ] The “Book title” field links to the book.
@@ -129,11 +129,11 @@ $ npm start
         * As a librarian, I should be able to list all patrons so I can find and access library-goers easily. Example: all_patrons.html.
             - [ ] Include a button to create a new patron.
             * Display a table of Patrons with the following columns:
-                - [ ] Name
-                - [ ] Address
-                - [ ] Email
-                - [ ] Library ID
-                - [ ] Zip Code
+                - [X] Name
+                - [X] Address
+                - [X] Email
+                - [X] Library ID
+                - [X] Zip Code
             * Table should include the following links:
                 - [ ] Names should link to that patron's detail page.
     * Patron Detail Page
