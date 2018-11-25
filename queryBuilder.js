@@ -14,14 +14,9 @@ module.exports = (models, subject, type) => {
         checked: {returned_on: null},
 
         'books': {
-            'all':      () => (
-                            model.findAll({
-                                attributes: {exclude: ['id']}
-                            })
-                        ),
+            'all':      () => model.findAll(),
             'overdue':  () => (
                             model.findAll({
-                                attributes: {exclude: ['id']},
                                 include: [{ 
                                     model: models.loans, 
                                     attributes: [],
@@ -32,7 +27,6 @@ module.exports = (models, subject, type) => {
                         ),
             'checked':  () => (
                             model.findAll({
-                                attributes: {exclude: ['id']},
                                 include: [{ 
                                     model: models.loans, 
                                     attributes: [],
@@ -43,11 +37,7 @@ module.exports = (models, subject, type) => {
                         )
         },
         'patrons': {
-            'all':      () => (
-                            model.findAll({ 
-                                attributes: {exclude: ['id']}
-                            })
-                        )
+            'all':      () => model.findAll()
         },
         'loans': {
             attributes: [
