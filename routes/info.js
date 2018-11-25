@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 
 // create dynamic routes
 router.get(/all|overdue|checked/, (req, res) => {
-    const args = templateArgs(req, res);
+    const args = templateArgs(req, res, 'table');
     queryBuilder(models, args.subject, args.type)
     .then(data => {
         const rows = rowsParser(data, args.subject);
@@ -25,5 +25,10 @@ router.get(/all|overdue|checked/, (req, res) => {
         res.render('page', args);
     })
 });
+
+router.get(/new/, (req, res) => {
+    const args = templateArgs(req, res, 'form')
+    res.render('page', args);
+})
 
 module.exports = router;
