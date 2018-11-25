@@ -1,15 +1,10 @@
 form
-    p
-        label(for="title") Title
-        input(id="title" type="text")
-    p
-        label(for="author") Author
-        input(id="author" type="text")
-    p
-        label(for="genre") Genre
-        input(id="genre" type="text")
-    p
-        label(for="first_published") First Published
-        input(id="first_published" type="text")
+    each label in formLabels
+        p
+            label(for=`${label.forID}`)= label.text
+            if label.text === 'Book' || label.text === 'Patron'     
+                select(id=`${label.forID}`)
+            else
+                input(id=`${label.forID}` type="text")
 
-    p: input(type="submit" value="Create New Book")
+    p: input(type="submit" value=`Create New ${item}`)
