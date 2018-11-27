@@ -28,9 +28,13 @@ module.exports = ( () => {
                 }
                 // change to subject to books for titling
                 if (subject === 'loans' && type === 'checked') subject = 'books';
+
+                // give title 'titlecasing'
                 title += subject[0].toUpperCase()+subject.slice(1);
-                // if creating a new item, slice off 's' in title
-                if (type === 'new') title = title.slice(0, -1);
+
+                // if creating or viewing an item, make title singular
+                if (type === 'new' || type === 'details') title = title.slice(0, -1);
+                if (type === 'details') title += ': ';
                 return title;
             }
         },
