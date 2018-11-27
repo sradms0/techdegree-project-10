@@ -5,6 +5,7 @@ const { Op } = require('sequelize');
 module.exports = (models, subject, type, pk=undefined) => {
     const model = models[subject];
     const find = {
+        details: () => find.loans.details(),
         overdue: {
             return_by: {
                 [Op.lt]: new Date()
@@ -35,11 +36,11 @@ module.exports = (models, subject, type, pk=undefined) => {
                                 }]
                             })
                         ),
-            'details':  () => find.loans.details()
+            'details':  () => find.details()
         },
         'patrons': {
             'all':      () => model.findAll(),
-            'details':  () => find.loans.details(),
+            'details':  () => find.details()
         },
         'loans': {
             attributes: [
