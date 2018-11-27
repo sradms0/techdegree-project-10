@@ -50,28 +50,28 @@ $ npm start
             - [X] Genre
             - [X] Year Released/First Published
         * Table should include the following links:
-            - [ ] Book titles should link to the book's detail page.
+            - [X] Book titles should link to the book's detail page.
 
     * Add a New Book
         * As a librarian, I should be able to add a book to the database so that they can be tracked on the system. Example: new_book.html.
             * Display a form that allows the user to add a book, with the following input fields:
-                - [ ] Title (required)
-                - [ ] Author (required)
-                - [ ] Genre (required)
-                - [ ] First Published (optional)
+                - [X] Title (required)
+                - [X] Author (required)
+                - [X] Genre (required)
+                - [X] First Published (optional)
             - [ ] When the form is submitted successfully, the book is created in the database, user is redirected to the Books Listing Page and the book appears in the list with updated information.
-            - [ ] When form labels are clicked, they should bring focus to corresponding input.
+            - [X] When form labels are clicked, they should bring focus to corresponding input.
             - [ ] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
             - [ ] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
     * Book Detail Page
-        - [ ] As a librarian, I should be able to go to a book’s detail page, make edits and view its loan history. Example book_detail.html.
+        * As a librarian, I should be able to go to a book’s detail page, make edits and view its loan history. Example book_detail.html.
         * Display a form allowing the user to update the book, with the following input fields:
-            - [ ] Title (required)
-            - [ ] Author (required)
-            - [ ] Genre (required)
-            - [ ] First Published (optional)
+            - [X] Title (required)
+            - [X] Author (required)
+            - [X] Genre (required)
+            - [X] First Published (optional)
         - [ ] When the form is submitted successfully, the book is updated in the database, user is redirected to the Books Listing Page and the book appears in the list with updated information.
-        - [ ] When form labels are clicked, they should bring focus to corresponding input.
+        - [X] When form labels are clicked, they should bring focus to corresponding input.
         - [ ] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
         - [ ] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
         * Display a Loan History table with the following columns:
@@ -83,13 +83,13 @@ $ npm start
             - [X] Action
 
         * Table should include the following links:
-            - [ ] The “Book” field links to the book.
-            - [ ] The “Patron” field links to the patron who checked out the book.
-            - [ ] If the book is checked out, the “Action” column contains a link/button to return the book.
+            - [X] The “Book” field links to the book.
+            - [X] The “Patron” field links to the patron who checked out the book.
+            - [X] If the book is checked out, the “Action” column contains a link/button to return the book.
     * Loan Listing Page
         * As a librarian, I should be able to filter loans by “All”, “Overdue”, and “Checked Out”, so I can quickly see 
           the state of the loan. Examples all_loans.html, overdue_loans.html and checked_loans.html.
-        - [ ] Include a button that links to the New Loan Page.
+        - [X] Include a button that links to the New Loan Page.
         * Display a table of loans with the following columns:
             - [X] Book title
             - [X] Patron
@@ -98,20 +98,20 @@ $ npm start
             - [X] Returned on
             - [X] Action
         * Table should include the following links:
-            - [ ] The “Patron” field links to the patron who checked out the book.
-            - [ ] The “Book title” field links to the book.
-            - [ ] If the book is checked out, the “Action” column contains a link/button to return the book.
+            - [X] The “Patron” field links to the patron who checked out the book.
+            - [X] The “Book title” field links to the book.
+            - [X] If the book is checked out, the “Action” column contains a link/button to return the book.
     * New Loan Page
         * As a librarian, I should be able to check out a book so I can lend books to patrons. Example new_loan.html.
             * Display a form allowing the user to update the Loan, with the following input fields:
-                - [ ] Book_ID (required)
-                - [ ] Patron_ID (required)
-                - [ ] Loaned_on (required)
-                - [ ] Return_by (required)
+                - [X] Book_ID (required)
+                - [X] Patron_ID (required)
+                - [X] Loaned_on (required)
+                - [X] Return_by (required)
             - [ ] The patron and book fields should be select boxes where you can select the Patron_ID or Book_ID.
             - [ ] The Loaned_on field should be auto populated with today’s date. Example: 2016-10-20. The returned by date should also be pre-populated with a date 7 days in the future, for example: 2016-10-27.
             - [ ] When the form is submitted successfully, a loan is created in the database and the user should be redirected to the loan listing page, where updated info should be visible.
-            - [ ] When form labels are clicked, they should bring focus to corresponding input.
+            - [X] When form labels are clicked, they should bring focus to corresponding input.
             - [ ] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
             - [ ] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
 
@@ -139,39 +139,39 @@ $ npm start
     * Patron Detail Page
         * As a librarian, I should be able to go to a patron's detail page, make edits and view their loan history. Example patron_detail.html.
             * Display a form for listing patron’s information with the following required fields:
-                - [ ] First Name
-                - [ ] Last Name
-                - [ ] Address
-                - [ ] Email
-                - [ ] Library ID
-                - [ ] Zip Code
+                - [X] First Name
+                - [X] Last Name
+                - [X] Address
+                - [X] Email
+                - [X] Library ID
+                - [X] Zip Code
             - [ ] When the form is submitted successfully, the patron should be updated in the database and the user should be redirected to the patron page, where updated info should be visible.
-            - [ ] When form labels are clicked, they should bring focus to corresponding input.
+            - [X] When form labels are clicked, they should bring focus to corresponding input.
             - [ ] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
             - [ ] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
             * Display a Loan History table for current patron with the following columns:
-                - [ ] Book
-                - [ ] Patron
-                - [ ] Loaned on
-                - [ ] Return by
-                - [ ] Returned on
-                - [ ] Action
+                - [X] Book
+                - [X] Patron
+                - [X] Loaned on
+                - [X] Return by
+                - [X] Returned on
+                - [X] Action
             * Table should include the following links:
-                - [ ] Books should link back to the book detail page.
-                - [ ] Patron’s name links to the corresponding patron detail page.
-                - [ ] If the book is checked out, the “Action” column contains a link/button to return the book.
+                - [X] Books should link back to the book detail page.
+                - [X] Patron’s name links to the corresponding patron detail page.
+                - [X] If the book is checked out, the “Action” column contains a link/button to return the book.
 
     * New Patron Page
         * As a librarian, I should be able to create new library patrons so they can use the facilities. Example: new_patron.html.
             * Display a form for listing patron’s information with the following required fields:
-                - [ ] First Name
-                - [ ] Last Name
-                - [ ] Address
-                - [ ] Email
-                - [ ] Library ID
-                - [ ] Zip Code
+                - [X] First Name
+                - [X] Last Name
+                - [X] Address
+                - [X] Email
+                - [X] Library ID
+                - [X] Zip Code
             - [ ] When the form is submitted successfully, a patron should be created in the database and the user should be redirected to the patrons listing page, where updated info should be visible.
-            - [ ] When form labels are clicked, they should bring focus to corresponding input.
+            - [X] When form labels are clicked, they should bring focus to corresponding input.
             - [ ] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
             - [ ] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
 
