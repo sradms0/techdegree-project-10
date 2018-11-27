@@ -45,34 +45,38 @@ module.exports = ( () => {
                 switch (subject) {
                     case 'books':
                         formLabels = [
-                            'Title',
-                            'Author',
-                            'Genre',
-                            'First Published'
+                            {text: 'Title',             required: true},
+                            {text: 'Author',            required: true},
+                            {text: 'Genre',             required: true},
+                            {text: 'First Published',   required: false}
                         ];
                         break;
                     case 'patrons':
                         formLabels = [
-                            'First Name',
-                            'Last Name',
-                            'Address',
-                            'Email',
-                            'Library ID',
-                            'Zip Code'
+                            {text: 'First Name',    required: true},
+                            {text: 'Last Name',     required: true},
+                            {text: 'Address',       required: true},
+                            {text: 'Email',         required: true},
+                            {text: 'Library ID',    required: true},
+                            {text: 'Zip Code',      required: true}
                         ];
                         break;
                     case 'loans':
                         formLabels = [
-                            'Book',
-                            'Patron',
-                            'Loaned on:',
-                            'Return by:'
+                            {text: 'Book'},
+                            {text: 'Patron'},
+                            {text: 'Loaned on:'},
+                            {text: 'Return by:'}
                         ];
                         break;
                     default:
                         break;
                 }
-                return formLabels.map(i => ({text: i, forID: i.toLowerCase().replace(' ', '_')}));
+                // set all for and id attrs to lowered text and _ for space
+                return formLabels.map(i =>  {
+                    i.forID = i.text.toLowerCase().replace(' ', '_')
+                    return i;
+                });
             }
         },
 
