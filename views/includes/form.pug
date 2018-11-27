@@ -1,10 +1,15 @@
 form
     each label in formLabels
         p
+            -let val = row ? row[label.forID] : ''
             label(for=`${label.forID}`)= label.text
             if label.text === 'Book' || label.text === 'Patron'     
                 select(id=`${label.forID}`)
             else
-                input(id=`${label.forID}` type="text")
+                input(id=`${label.forID}` value=`${val}` type="text")
 
-    p: input(type="submit" value=`Create New ${item}`)
+    p: input(type="submit" value=`${buttonText}`)
+
+//if details, loan history table here:
+if type !== 'new'
+    include table

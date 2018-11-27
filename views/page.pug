@@ -3,7 +3,7 @@ block content
     h1= title
 
     //-show only table when viewing data
-    if type != 'new'
+    if type !== 'new' && type !== 'details'
         p: a(href="new", class="button", class="button") Create New #{item}
 
         //-don't show filer when creating new item

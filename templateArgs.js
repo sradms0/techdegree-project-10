@@ -15,7 +15,11 @@ module.exports = (req, res, config) => {
     const args = {subject,type,title,item};
 
     if (config === 'table') args.tableHeaders = setTableHeaders(subject);
-    if (config === 'form')  args.formLabels   = setFormLabels(subject);
+    if (config === 'form') {
+        args.formLabels = setFormLabels(subject);
+        args.tableHeaders = setTableHeaders('loans');
+        args.buttonText = (type === 'details') ? 'Update' : `Create New ${item}`;
+    }
 
     return args;
 }
