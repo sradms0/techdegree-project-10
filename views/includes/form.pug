@@ -6,7 +6,7 @@ form
             if label.text === 'Book' || label.text === 'Patron'     
                 select(id=`${label.forID}`)
             else
-                input(id=`${label.forID}` value=`${val}` type="text")
+                input(id=`${label.forID}` value=`${val}` type="text" required=label.required)
 
     p: input(type="submit" value=`${buttonText}`)
 
