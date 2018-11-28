@@ -82,16 +82,20 @@ module.exports = (models, subject, type, pk=undefined) => {
                             })
                         ),
             'details': () => {
-                const associate = (subject === 'books') ? 0 : 1;
-                find.loans.associates[associate].where = {id: pk};
-                return ({
-                    entity: model.findByPk(pk),
-                    loans: models.loans.findAll({
-                            attributes: find.loans.attributes,
-                            include: find.loans.associates
+                            const associate = (subject === 'books') ? 0 : 1;
+                            find.loans.associates[associate].where = {id: pk};
+                            return ({
+                                entity: model.findByPk(pk),
+                                loans:  models.loans.findAll({
+                                            attributes: find.loans.attributes,
+                                            include: find.loans.associates
+                                    })
+                            })
+                        },
+            'new':    () => ({
+                            books:   models.books.findAll(),
+                            patrons: models.patrons.findAll()
                         })
-                })
-            }
 
         }
     }

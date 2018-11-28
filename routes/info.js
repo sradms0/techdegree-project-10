@@ -20,7 +20,7 @@ router.get('/details/:id', (req, res) => {
     res.redirect(`${req.baseUrl}/details`);
 });
 
-// create dynamic routes
+// routes for viewing tables
 router.get('/all$|overdue$|checked$/', (req, res) => {
     const args = templateArgs(req, res, 'table');
     queryBuilder(models, args.subject, args.type)
@@ -31,6 +31,7 @@ router.get('/all$|overdue$|checked$/', (req, res) => {
     })
 });
 
+// routes for forms
 router.get(/new$|details$/, (req, res) => {
     const args = templateArgs(req, res, 'form')
     if (args.type === 'details') {
@@ -43,8 +44,19 @@ router.get(/new$|details$/, (req, res) => {
             args.rows = rowsParser(data, 'loans', 'all');
             res.render('page', args);
         });
+    } else {
+        if (args.subject === 'loans'){ 
+            args.rows = {};
+            const queries = queryBuilder(models, args.subject, args.type)
+            queries.books.then(data => {
+                args.rows.book = rowsParser(data, 'books', 'all');
+            });
+            queries.patrons.then( data => {
+                args.rows.patron = rowsParser(data, 'patrons', 'all');
+                res.render('page', args);
+            });
+        }
     }
-    else res.render('page', args);
     
 })
 

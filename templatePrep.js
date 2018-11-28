@@ -65,8 +65,8 @@ module.exports = ( () => {
                         formLabels = [
                             {text: 'Book'},
                             {text: 'Patron'},
-                            {text: 'Loaned on:'},
-                            {text: 'Return by:'}
+                            {text: 'Loaned on:', date: new Date()},
+                            {text: 'Return by:', date: new Date(new Date().setDate(new Date().getDate() + 7))}
                         ];
                         break;
                     default:
@@ -74,7 +74,7 @@ module.exports = ( () => {
                 }
                 // set all for and id attrs to lowered text and _ for space
                 return formLabels.map(i =>  {
-                    i.forID = i.text.toLowerCase().replace(' ', '_')
+                    i.forID = i.text.toLowerCase().replace(' ', '_').replace(':','')
                     return i;
                 });
             }

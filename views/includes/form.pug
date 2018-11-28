@@ -2,9 +2,13 @@ form
     each label in formLabels
         p
             -let val = row ? row[label.forID] : ''
+            -val = (label.forID === 'loaned_on' || label.forID == 'return_by') ? label.date : val
             label(for=`${label.forID}`)= label.text
             if label.text === 'Book' || label.text === 'Patron'     
+                -let entities = rows[label.forID]
                 select(id=`${label.forID}`)
+                    each e in entities
+                        option(value=`${[e[label.forID+'_id']]}`)= e[label.forID]
             else
                 input(id=`${label.forID}` value=`${val}` type="text" required=label.required)
 
