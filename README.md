@@ -108,8 +108,8 @@ $ npm start
                 - [X] Patron_ID (required)
                 - [X] Loaned_on (required)
                 - [X] Return_by (required)
-            - [ ] The patron and book fields should be select boxes where you can select the Patron_ID or Book_ID.
-            - [ ] The Loaned_on field should be auto populated with today’s date. Example: 2016-10-20. The returned by date should also be pre-populated with a date 7 days in the future, for example: 2016-10-27.
+            - [X] The patron and book fields should be select boxes where you can select the Patron_ID or Book_ID.
+            - [X] The Loaned_on field should be auto populated with today’s date. Example: 2016-10-20. The returned by date should also be pre-populated with a date 7 days in the future, for example: 2016-10-27.
             - [ ] When the form is submitted successfully, a loan is created in the database and the user should be redirected to the loan listing page, where updated info should be visible.
             - [X] When form labels are clicked, they should bring focus to corresponding input.
             - [ ] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
