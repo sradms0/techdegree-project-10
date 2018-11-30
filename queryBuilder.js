@@ -36,20 +36,22 @@ module.exports = (models, subject, type, pk=undefined) => {
                                 }]
                             })
                         ),
-            'details':  () => find.details()
+            'details':  () => find.details(),
+            'new':      () => null,
+            'return':   () => (
+                            models.loans.findAll({
+                                include: find.loans.associates,
+                                where: {id: pk}
+                            })
+                        )
         },
         'patrons': {
             'all':      () => model.findAll(),
-            'details':  () => find.details()
+            'details':  () => find.details(),
+            'new':      () => null,
+            'return':   () => null
         },
         'loans': {
-            attributes: [
-                'loaned_on',
-                'return_by',
-                'returned_on',
-                'book_id',
-                'patron_id'
-            ],
             associates: [{
                     model: models.books,
                     attributes: ['title'],
@@ -63,20 +65,17 @@ module.exports = (models, subject, type, pk=undefined) => {
 
             'all':      () => (
                             model.findAll({
-                                attributes: find.loans.attributes,
                                 include: find.loans.associates
                             })
                         ),
             'overdue':  () => (
                             model.findAll({
-                                attributes: find.loans.attributes,
                                 include: find.loans.associates,
                                 where: find.overdue
                             })
                         ),
             'checked':  () => (
                             model.findAll({
-                                attributes: find.loans.attributes,
                                 include: find.loans.associates,
                                 where: find.checked
                             })
@@ -87,7 +86,6 @@ module.exports = (models, subject, type, pk=undefined) => {
                             return ({
                                 entity: model.findByPk(pk),
                                 loans:  models.loans.findAll({
-                                            attributes: find.loans.attributes,
                                             include: find.loans.associates
                                     })
                             })
@@ -95,8 +93,8 @@ module.exports = (models, subject, type, pk=undefined) => {
             'new':    () => ({
                             books:   models.books.findAll(),
                             patrons: models.patrons.findAll()
-                        })
-
+                        }),
+            'return':   () => null
         }
     }
     return find[subject][type]();

@@ -3,7 +3,7 @@ block content
     include includes/title
 
     //-show only table when viewing data
-    if type !== 'new' && type !== 'details'
+    if type !== 'new' && type !== 'details' && type !== 'return'
         p: a(href="new", class="button", class="button") Create New #{item}
 
         //-don't show filer when creating new item

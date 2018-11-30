@@ -1,0 +1,9 @@
+tr
+    td: a(href=`/books/details/${row.book_id}`)= row.title
+    td: a(href=`/patrons/details/${row.patron_id}`)= row.patron
+    td= row.loaned_on
+    td= row.return_by
+    td= row.returned_on
+    if row.action
+        td: a(href=`/books/return/${row.id}` class="button")= row.action
+

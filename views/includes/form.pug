@@ -1,20 +1,26 @@
 form
-    each label in formLabels
-        p
-            -let val = row ? row[label.forID] : ''
-            -val = (label.forID === 'loaned_on' || label.forID == 'return_by') ? label.date : val
-            label(for=`${label.forID}`)= label.text
-            if label.text === 'Book' || label.text === 'Patron'     
-                -let entities = rows[label.forID]
-                select(id=`${label.forID}`)
-                    each e in entities
-                        option(value=`${[e[label.forID+'_id']]}`)= e[label.forID]
-            else
-                input(id=`${label.forID}` value=`${val}` type="text" required=label.required)
+    //include forms/formSet
+    //+formSet
+    if type == 'details'
+        if subject == 'books'
+            include forms/details/book
+        if subject == 'patrons'
+            include forms/details/patron
+    if type == 'new'
+        if subject == 'books'
+            include forms/new/book
+        if subject == 'patrons'
+            include forms/new/patron
+        if subject == 'loans'
+            include forms/new/loan
+    if type == 'return'
+        include forms/return/book
 
+    -const buttonText = (type === 'details') ? 'Update' : `Create New ${item}`
     p: input(type="submit" value=`${buttonText}`)
 
-//if details, loan history table here:
-if type !== 'new'
+//-//if details, loan history table here:
+if type === 'details'
+    -subject = 'loans';
     h2 Loan History
     include table

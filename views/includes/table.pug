@@ -1,20 +1,10 @@
 //-generate table headers based on subject
 table
     thead
-        tr
-            each tableHeader in tableHeaders
-                th= tableHeader
+        include tables/thSet
+        +thSet
     tbody
+        include tables/tdSet
         if rows
             each row in rows
-                tr
-                    each val, key in row 
-                        if key !== 'patron_id' && key !== 'book_id'
-                            if key === 'book' || key === 'patron'
-                                -let id = (key === 'book') ? row.book_id : row.patron_id
-                                td: a(href=`/${key}s/details/${id}`)= val
-                            else
-                                if key === 'action' && val
-                                    td: a(href="/books/return" class="button")= val
-                                else
-                                    td= val
+                +tdSet(row)

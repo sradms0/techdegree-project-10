@@ -15,9 +15,9 @@ router.get('/', (req, res) => {
     // redirect to 'all' filter of subject (base url that was entered)
     res.redirect(`${req.baseUrl}/all`);
 });
-router.get('/details/:id', (req, res) => {
-    id = req.params.id;
-    res.redirect(`${req.baseUrl}/details`);
+router.get(/(details|return)\/(\d+)/, (req, res) => {
+    id = req.params[1];
+    res.redirect(`${req.originalUrl.slice(0,-id.length - 1)}`);
 });
 
 // routes for viewing tables
@@ -32,31 +32,41 @@ router.get('/all$|overdue$|checked$/', (req, res) => {
 });
 
 // routes for forms
-router.get(/new$|details$/, (req, res) => {
+router.get(/new$|details$|return$/, (req, res) => {
     const args = templateArgs(req, res, 'form')
-    if (args.type === 'details') {
-        if (!id) return res.redirect(`${req.baseUrl}/all`);    
-        const queries = queryBuilder(models, args.subject, args.type, id)
-        queries.entity.then(data => {
+    const query = queryBuilder(models, args.subject, args.type, id);
+
+    if (!id && (args.type === 'return' || args.type === 'details')) 
+        return res.redirect(`${req.baseUrl}/all`);    
+
+    if (args.type === 'return') {
+        query.then(data => {
+            console.log(args.type);
+            args.row = rowsParser(data, args.subject, args.type);
+            res.render('page', args);
+        });
+    } else if (args.type === 'details') {
+        query.entity.then(data => {
             args.row = rowsParser(data, args.subject, args.type);
         });
-        queries.loans.then( data => {
+        query.loans.then( data => {
             args.rows = rowsParser(data, 'loans', 'all');
             res.render('page', args);
         });
+        // new forms
     } else {
         if (args.subject === 'loans'){ 
             args.rows = {};
-            const queries = queryBuilder(models, args.subject, args.type)
-            queries.books.then(data => {
-                args.rows.book = rowsParser(data, 'books', 'all');
+            query.books.then(data => {
+                args.rows.books = rowsParser(data, 'books', 'all');
             });
-            queries.patrons.then( data => {
-                args.rows.patron = rowsParser(data, 'patrons', 'all');
+            query.patrons.then(data => {
+                args.rows.patrons = rowsParser(data, 'patrons', 'all');
                 res.render('page', args);
             });
-        }
-    }
+        } else res.render('page', args);
+    } 
+    id = null;
     
 })
 
