@@ -4,9 +4,9 @@ const express = require('express');
 const { sequelize: {models} } = require('../models');
 
 // helpers
-const templateArgs = require('../templateArgs');
-const queryBuilder = require('../queryBuilder');
-const rowsParser = require('../rowsParser');
+const templateArgs  = require('../utils/templateArgs');
+const queryBuilder  = require('../utils/queryBuilder');
+const rowsParser    = require('../utils/rowsParser');
 
 const router = express.Router();
 let id = null;
@@ -39,6 +39,7 @@ router.get(/new$|details$|return$/, (req, res) => {
     if (!id && (args.type === 'return' || args.type === 'details')) 
         return res.redirect(`${req.baseUrl}/all`);    
 
+    // existing forms
     if (args.type === 'return') {
         query.then(data => {
             console.log(args.type);
@@ -53,7 +54,7 @@ router.get(/new$|details$|return$/, (req, res) => {
             args.rows = rowsParser(data, 'loans', 'all');
             res.render('page', args);
         });
-        // new forms
+    // new forms
     } else {
         if (args.subject === 'loans'){ 
             args.rows = {};

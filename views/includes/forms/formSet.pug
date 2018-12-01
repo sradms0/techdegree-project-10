@@ -1,0 +1,18 @@
+mixin formSet
+    case type
+        when 'details'
+            case subject
+                when 'books'
+                    include details/book
+                when 'patrons'
+                    include details/patron
+        when 'new'
+            case subject
+                when 'books'
+                    include new/book
+                when 'patrons'
+                    include new/patron
+                when 'loans'
+                    include new/loan
+        when 'return'
+            include return/book

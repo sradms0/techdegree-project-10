@@ -23,6 +23,8 @@ module.exports = ( () => {
                     case 'new':
                         title = 'New ';
                         break;
+                    case 'return':
+                        title = 'Patron: Return ';
                     default:
                         break;
                 }
@@ -33,7 +35,7 @@ module.exports = ( () => {
                 title += subject[0].toUpperCase()+subject.slice(1);
 
                 // if creating or viewing an item, make title singular
-                if (type === 'new' || type === 'details') title = title.slice(0, -1);
+                if (type === 'new' || type === 'details' || type === 'return') title = title.slice(0, -1);
                 if (type === 'details') title += ': ';
                 return title;
             }
