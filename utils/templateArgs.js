@@ -1,15 +1,16 @@
 'use strict';
 
-const utils = require('./templatePrep');
+// for effectively retrieving the subject&type 
+//  from the url: eliminate '/'
+const sliceUrl = url => url.slice(1);
+// for create button 
+const setItem = subject => subject[0].toUpperCase()+subject.slice(1,-1);
 
 module.exports = (req, res, config) => {
-    const {setTitle, sliceUrl, setItem} = utils.general;
-
     const subject   = sliceUrl(req.baseUrl);
     const type      = sliceUrl(req.url);
-    const title     = setTitle(subject, type);
     const item      = setItem(subject);
 
-    return {subject,type,title,item};
+    return {subject,type,item};
 }
 

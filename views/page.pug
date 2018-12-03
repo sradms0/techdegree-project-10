@@ -1,6 +1,7 @@
 extends layout
 block content
-    include includes/title
+    include includes/titles/titleSet
+    +titleSet(subject, type)
 
     //-show only table when viewing data
     if type !== 'new' && type !== 'details' && type !== 'return'
