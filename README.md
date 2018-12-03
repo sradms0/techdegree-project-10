@@ -43,7 +43,7 @@ $ npm start
     * Books Listing Page
         * As a librarian, I should be able to filter books by 'all' , 'overdue' and 'checked out' status on the 
           Books Listing Page so I can quickly see the state of the library. Examples: all_books.html, overdue_books.html and checked_books.html.
-            - [ ] Include a button to create a new book.
+            - [X] Include a button to create a new book.
         * Display a table of books with the following columns:
             - [X] Book Title
             - [X] Author
@@ -117,9 +117,9 @@ $ npm start
 
     * Return Book Page
         * As a librarian, I should be able to return a book so we know the current state of a book in our library. Example:return_book.html.
-            - [ ] Display book title, patron who borrowed the book, the loaned on and return by dates.
-            - [ ] Include one required returned_on form field. It should be pre-populated with today’s date. Example: 2016-10-20.
-            - [ ] Include a button to return the book.
+            - [X] Display book title, patron who borrowed the book, the loaned on and return by dates.
+            - [X] Include one required returned_on form field. It should be pre-populated with today’s date. Example: 2016-10-20.
+            - [X] Include a button to return the book.
             - [ ] When the form is submitted successfully, the book should be updated in the database and the user should be redirect to the loans listing page, where updated info should be visible.
             - [ ] When form labels are clicked, they should bring focus to corresponding input.
             - [ ] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
@@ -127,7 +127,7 @@ $ npm start
 
     * Patron Listing Page
         * As a librarian, I should be able to list all patrons so I can find and access library-goers easily. Example: all_patrons.html.
-            - [ ] Include a button to create a new patron.
+            - [X] Include a button to create a new patron.
             * Display a table of Patrons with the following columns:
                 - [X] Name
                 - [X] Address
@@ -135,7 +135,7 @@ $ npm start
                 - [X] Library ID
                 - [X] Zip Code
             * Table should include the following links:
-                - [ ] Names should link to that patron's detail page.
+                - [X] Names should link to that patron's detail page.
     * Patron Detail Page
         * As a librarian, I should be able to go to a patron's detail page, make edits and view their loan history. Example patron_detail.html.
             * Display a form for listing patron’s information with the following required fields:
