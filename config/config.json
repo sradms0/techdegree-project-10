@@ -2,7 +2,17 @@
   "development": {
     "database": "db",
     "dialect": "sqlite",
-    "storage": "./library.db",
+    "storage": "./database/library.db",
+    "define": {
+      "timestamps": false
+    },
+    "operatorsAliases": false
+  },
+
+  "test": {
+    "database": "db",
+    "dialect": "sqlite",
+    "storage": "./database/test.db",
     "define": {
       "timestamps": false
     },
