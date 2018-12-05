@@ -8,6 +8,7 @@ module.exports = (data, subject, type) => {
 
     const values = obj => obj.dataValues;
     const join = (first,last) => first.concat(' ', last);
+    const slice = _date => _date ? _date.slice(0, 10) : _date;
     const parse = {
         // prepare for templating
         'books': {
@@ -22,10 +23,12 @@ module.exports = (data, subject, type) => {
         'loans': {
             'all':      () => (
                             data.map(i => {
-                                const { id, loaned_on, return_by, returned_on, ...rest } = values(i);
-                                const { book: { title },  book_id,  patron: { first_name, last_name }, patron_id  } = rest
+                                let { id, loaned_on, return_by, returned_on, ...rest } = values(i);
+                                const { book: { title },  book_id,  patron: { first_name, last_name }, patron_id  } = rest;
                                 const action = !returned_on ? 'Return Book' : null;
-                                return ( {id, title, book_id, 'patron': join(first_name,last_name), patron_id, loaned_on, return_by, returned_on, action} );
+                                return ( 
+                                    {id, title, book_id, 'patron': join(first_name,last_name), patron_id, 
+                                    'loaned_on': slice(loaned_on), 'return_by': slice(return_by), 'returned_on': slice(returned_on), action} );
                             })
                         ),
         }
