@@ -2,13 +2,15 @@
 
 'use strict';
 
+const express       = require('express');
+const bodyParser    = require('body-parser');
 const { sequelize } = require('./models');
-
-const express = require('express');
 
 const app = express();
 
 app.use('/static', express.static('public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('view engine', 'pug');
 

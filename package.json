@@ -9,6 +9,7 @@
   "author": "Scott Adams <sradms0@protonmail.com>",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "path-to-regexp": "^2.4.0",
     "pug": "^2.0.3",
