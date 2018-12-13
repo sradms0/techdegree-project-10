@@ -51,11 +51,7 @@ router.get(/new$/, (req, res) => {
 router.post(/new$/, (req, res) => {
     const {subject} = argsBuilder(req);
     models[subject].create(req.body)
-    .then(entity => {
-        let url = `/${subject}/details/${entity.id}`;
-        if (subject === 'loans') url = '/loans/all';
-        res.redirect(url);
-    })
+    .then(entity => res.redirect(`/${subject}/all`))
     .catch(error => console.log(error));
     
 });
@@ -86,8 +82,8 @@ router.post(/details$|return$/, (req, res) => {
     const {subject} = argsBuilder(req);
     models[subject].findByPk(id)
     .then(entity => {
-        entity.update(req.body);
-        res.redirect(`/${subject}/details/${entity.id}`);
+        entity.update(req.body)
+        .then(entity => res.redirect(`/${subject}/all`))
     })
     .catch(error => console.log(error));
 });

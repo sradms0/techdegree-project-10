@@ -59,7 +59,7 @@ $ npm start
                 - [X] Author (required)
                 - [X] Genre (required)
                 - [X] First Published (optional)
-            - [ ] When the form is submitted successfully, the book is created in the database, user is redirected to the Books Listing Page and the book appears in the list with updated information.
+            - [X] When the form is submitted successfully, the book is created in the database, user is redirected to the Books Listing Page and the book appears in the list with updated information.
             - [X] When form labels are clicked, they should bring focus to corresponding input.
             - [ ] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
             - [ ] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
@@ -70,7 +70,7 @@ $ npm start
             - [X] Author (required)
             - [X] Genre (required)
             - [X] First Published (optional)
-        - [ ] When the form is submitted successfully, the book is updated in the database, user is redirected to the Books Listing Page and the book appears in the list with updated information.
+        - [X] When the form is submitted successfully, the book is updated in the database, user is redirected to the Books Listing Page and the book appears in the list with updated information.
         - [X] When form labels are clicked, they should bring focus to corresponding input.
         - [ ] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
         - [ ] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
@@ -110,7 +110,7 @@ $ npm start
                 - [X] Return_by (required)
             - [X] The patron and book fields should be select boxes where you can select the Patron_ID or Book_ID.
             - [X] The Loaned_on field should be auto populated with today’s date. Example: 2016-10-20. The returned by date should also be pre-populated with a date 7 days in the future, for example: 2016-10-27.
-            - [ ] When the form is submitted successfully, a loan is created in the database and the user should be redirected to the loan listing page, where updated info should be visible.
+            - [X] When the form is submitted successfully, a loan is created in the database and the user should be redirected to the loan listing page, where updated info should be visible.
             - [X] When form labels are clicked, they should bring focus to corresponding input.
             - [ ] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
             - [ ] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
@@ -120,8 +120,8 @@ $ npm start
             - [X] Display book title, patron who borrowed the book, the loaned on and return by dates.
             - [X] Include one required returned_on form field. It should be pre-populated with today’s date. Example: 2016-10-20.
             - [X] Include a button to return the book.
-            - [ ] When the form is submitted successfully, the book should be updated in the database and the user should be redirect to the loans listing page, where updated info should be visible.
-            - [ ] When form labels are clicked, they should bring focus to corresponding input.
+            - [X] When the form is submitted successfully, the book should be updated in the database and the user should be redirect to the loans listing page, where updated info should be visible.
+            - [X] When form labels are clicked, they should bring focus to corresponding input.
             - [ ] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
             - [ ] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
 
@@ -145,7 +145,7 @@ $ npm start
                 - [X] Email
                 - [X] Library ID
                 - [X] Zip Code
-            - [ ] When the form is submitted successfully, the patron should be updated in the database and the user should be redirected to the patron page, where updated info should be visible.
+            - [X] When the form is submitted successfully, the patron should be updated in the database and the user should be redirected to the patron page, where updated info should be visible.
             - [X] When form labels are clicked, they should bring focus to corresponding input.
             - [ ] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
             - [ ] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
@@ -170,7 +170,7 @@ $ npm start
                 - [X] Email
                 - [X] Library ID
                 - [X] Zip Code
-            - [ ] When the form is submitted successfully, a patron should be created in the database and the user should be redirected to the patrons listing page, where updated info should be visible.
+            - [X] When the form is submitted successfully, a patron should be created in the database and the user should be redirected to the patrons listing page, where updated info should be visible.
             - [X] When form labels are clicked, they should bring focus to corresponding input.
             - [ ] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
             - [ ] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
