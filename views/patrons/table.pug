@@ -1,0 +1,26 @@
+extends ../layout
+block title
+    -let _title = 'Patrons';
+    title= _title
+block header
+    h1= _title
+    p: a(href="new", class="button", class="button") Create New Patron
+block content
+    table
+        thead
+            tr
+                th Name
+                th Address
+                th Email
+                th Library ID
+                th Zip
+        tbody
+            each row in data
+                tr
+                    td: a(href=`/patrons/details/${row.id}`)= row.first_name + ' ' + row.last_name
+                    td= row.address
+                    td= row.email
+                    td= row.library_id
+                    td= row.zip_code
+
+

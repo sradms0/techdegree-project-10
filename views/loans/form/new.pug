@@ -1,0 +1,26 @@
+extends ../../layout
+block title
+    -const _title = 'New Loan';
+    title= _title
+block header
+    h1= _title
+block content
+    form(action='/loans/new' method='post')
+        p
+            label(for="book_id") Book
+            select(id="book_id" name="book_id")
+                each book in bookData
+                    option(value=`${book.id}`)= book.title
+        p
+            label(for="patron_id") Patron
+            select(id="patron_id" name="patron_id")
+                each patron in patronData
+                    option(value=`${patron.id}`)= (patron.first_name + ' ' + patron.last_name)
+        p
+            label(for="loaned_on") Loaned on:
+            input(id="loaned_on" name="loaned_on" type="text" value=`${new Date()}`)
+
+        p
+            label(for="return_by") Return by:
+            input(id="return_by" name="return_by" type="text" value=`${new Date(new Date().setDate(new Date().getDate() + 7))}`)
+        p: input(type="submit" value="Create New Loan")

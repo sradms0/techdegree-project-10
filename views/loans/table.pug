@@ -1,0 +1,13 @@
+extends ../layout
+block title
+    -let _title = `${(filter === 'All') ? '' : filter + ' '}Loans`;
+    -_title     = `${(filter === 'Checked Out') ? filter + ' Books' : _title}`
+    title= _title
+block header
+    h1= _title
+    p: a(href="new", class="button", class="button") Create New Loan
+block content
+    include ../includes/filters
+    include includes/table
+    +filters('loans')
+    +loanHistory(data)

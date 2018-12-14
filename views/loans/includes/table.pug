@@ -1,0 +1,24 @@
+mixin loanHistory(data)
+    table
+        thead
+            tr
+                th Book
+                th Patron
+                th Loaned on
+                th Return by
+                th Returned on
+                th Action
+
+        tbody
+            if data
+                each loan in data
+                    -const book       = loan.book.dataValues
+                    -const patron     = loan.patron.dataValues;
+                    tr
+                        td: a(href=`/books/details/${book.id}`)= book.title
+                        td: a(href=`/patrons/details/${patron.id}`)= `${patron.first_name} ${patron.last_name}`
+                        td= `${loan.loaned_on.slice(0,10)}`
+                        td= `${loan.return_by.slice(0,10)}`
+                        td= `${loan.returned_on ? loan.returned_on.slice(0,10) : ''}`
+                        if !loan.returned_on
+                            td: a(href=`/books/return/${loan.id}` class="button") Return Book

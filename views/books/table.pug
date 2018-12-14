@@ -1,0 +1,25 @@
+extends ../layout
+block title
+    -let _title = `${(filter === 'All') ? '' : filter + ' '}Books`;
+    title= _title
+block header
+    h1= _title
+    p: a(href="new", class="button", class="button") Create New Book
+block content
+    include ../includes/filters
+    +filters('books')
+    table
+        thead
+            tr
+                th Title
+                th Author
+                th Genre
+                th Year Released
+        tbody
+            each row in data
+                tr
+                    td: a(href=`/books/details/${row.id}`)= row.title
+                    td= row.author
+                    td= row.genre
+                    td= row.first_published
+

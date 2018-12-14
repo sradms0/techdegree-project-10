@@ -14,11 +14,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('view engine', 'pug');
 
-const mainRoutes = require('./routes');
-const managerRoutes = require('./routes/manager');
-app.use(mainRoutes);
-// dynamically set base routes
-app.use(/\/books|\/patrons|\/loans/, managerRoutes);
+const index     = require('./routes');
+const books     = require('./routes/books');
+const patrons   = require('./routes/patrons');
+const loans     = require('./routes/loans');
+
+app.use(index);
+app.use('/books',    books);
+app.use('/patrons',  patrons);
+app.use('/loans',    loans);
 
 sequelize.sync()
 .then(() => {

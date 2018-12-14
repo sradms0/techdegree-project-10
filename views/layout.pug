@@ -1,9 +1,11 @@
 doctype html
 html(lang="en")
     head
+        block title
         link(rel='stylesheet', href='/static/stylesheets/style.css')
-    include includes/mainHeader.pug
     body
+        include includes/navigation.pug
+        block header
         block content
 
 

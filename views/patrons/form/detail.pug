@@ -1,0 +1,33 @@
+extends ../../layout
+block title
+    -const _title = `Patron: ${patronData.first_name} ${patronData.last_name}`;
+    title= _title
+block header
+    h1= _title
+block content
+    -const {id, first_name, last_name, address, email, library_id, zip_code} = patronData;
+    form(action=`/patrons/details/${id}`, method="post")
+        p 
+            label(for="first_name") First Name
+            input(id="first_name" name="first_name" type="text" required value=`${first_name}`)
+        p 
+            label(for="last_name") Last Name
+            input(id="last_name" name="last_name" type="text" required value=`${last_name}`)
+        p 
+            label(for="address") Address
+            input(id="address" name="address" type="text" required value=`${address}`)
+        p 
+            label(for="email") Email 
+            input(id="email" name="email" type="text" required value=`${email}`)
+        p 
+            label(for="library_id") Library ID
+            input(id="library_id" name="library_id" type="text" required value=`${library_id}`)
+        p 
+            label(for="zip_code") Zip Code
+            input(id="zip_code" name="zip_code" type="text" required value=`${zip_code}`)
+
+        p: input(type="submit" value="Update")
+    h2 Loan History
+    include ../../loans/includes/table
+    +loanHistory(loanData)
+

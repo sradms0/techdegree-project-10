@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
     // redirect to 'all' filter of subject (base url that was entered)
     res.redirect(`${req.baseUrl}/all`);
 });
+//TODO
 router.get(/(details|return)\/(\d+)/, (req, res) => {
     id = req.params[1];
     res.redirect(`${req.originalUrl.slice(0,-id.length - 1)}`);
