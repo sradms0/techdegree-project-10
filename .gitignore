@@ -2,3 +2,4 @@
 *.log
 node_modules
 database/test.db
+test_data
