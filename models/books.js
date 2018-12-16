@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         parse: value => {
           if (value.length) {
             const year = parseInt(value);
-            if (!year || (year <= 0 || year > new Date().getFullYear())) {
+            if (!year || year > new Date().getFullYear()) {
               throw new Error('Valid Year Required');            
             }
           }
