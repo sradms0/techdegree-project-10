@@ -61,8 +61,8 @@ $ npm start
                 - [X] First Published (optional)
             - [X] When the form is submitted successfully, the book is created in the database, user is redirected to the Books Listing Page and the book appears in the list with updated information.
             - [X] When form labels are clicked, they should bring focus to corresponding input.
-            - [ ] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
-            - [ ] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
+            - [X] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
+            - [X] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
     * Book Detail Page
         * As a librarian, I should be able to go to a book’s detail page, make edits and view its loan history. Example book_detail.html.
         * Display a form allowing the user to update the book, with the following input fields:
@@ -72,8 +72,8 @@ $ npm start
             - [X] First Published (optional)
         - [X] When the form is submitted successfully, the book is updated in the database, user is redirected to the Books Listing Page and the book appears in the list with updated information.
         - [X] When form labels are clicked, they should bring focus to corresponding input.
-        - [ ] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
-        - [ ] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
+        - [X] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
+        - [X] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
         * Display a Loan History table with the following columns:
             - [X] Book
             - [X] Patron
@@ -112,8 +112,8 @@ $ npm start
             - [X] The Loaned_on field should be auto populated with today’s date. Example: 2016-10-20. The returned by date should also be pre-populated with a date 7 days in the future, for example: 2016-10-27.
             - [X] When the form is submitted successfully, a loan is created in the database and the user should be redirected to the loan listing page, where updated info should be visible.
             - [X] When form labels are clicked, they should bring focus to corresponding input.
-            - [ ] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
-            - [ ] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
+            - [X] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
+            - [X] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
 
     * Return Book Page
         * As a librarian, I should be able to return a book so we know the current state of a book in our library. Example:return_book.html.
@@ -122,8 +122,8 @@ $ npm start
             - [X] Include a button to return the book.
             - [X] When the form is submitted successfully, the book should be updated in the database and the user should be redirect to the loans listing page, where updated info should be visible.
             - [X] When form labels are clicked, they should bring focus to corresponding input.
-            - [ ] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
-            - [ ] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
+            - [X] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
+            - [X] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
 
     * Patron Listing Page
         * As a librarian, I should be able to list all patrons so I can find and access library-goers easily. Example: all_patrons.html.
@@ -147,8 +147,8 @@ $ npm start
                 - [X] Zip Code
             - [X] When the form is submitted successfully, the patron should be updated in the database and the user should be redirected to the patron page, where updated info should be visible.
             - [X] When form labels are clicked, they should bring focus to corresponding input.
-            - [ ] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
-            - [ ] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
+            - [X] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
+            - [X] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
             * Display a Loan History table for current patron with the following columns:
                 - [X] Book
                 - [X] Patron
@@ -172,14 +172,14 @@ $ npm start
                 - [X] Zip Code
             - [X] When the form is submitted successfully, a patron should be created in the database and the user should be redirected to the patrons listing page, where updated info should be visible.
             - [X] When form labels are clicked, they should bring focus to corresponding input.
-            - [ ] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
-            - [ ] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
+            - [X] An error is displayed if the form is submitted with blank or invalid data in required fields. For example: “This field is required.”
+            - [X] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
 
     * Required fields and Forms
-        - [ ] As a librarian, I should be able to be notified if any of the required fields in any given form have any missing data, so that I can correct the information.
-        - [ ] For example, if the first name field is empty on the new patron form and the librarian submits it, the librarian should see: “First Name is required”.
-        - [ ] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
-        - [ ] When form labels are clicked, they should bring focus to corresponding input.
+        - [X] As a librarian, I should be able to be notified if any of the required fields in any given form have any missing data, so that I can correct the information.
+        - [X] For example, if the first name field is empty on the new patron form and the librarian submits it, the librarian should see: “First Name is required”.
+        - [X] To keep your DB safe, use Sequelize model validation for validating your from fields. Don't rely simply on HTML5 built in validation.
+        - [X] When form labels are clicked, they should bring focus to corresponding input.
 
 * attempt at exceeding expectations
     - [ ] Include pagination for both the patrons listing and books listing pages.
