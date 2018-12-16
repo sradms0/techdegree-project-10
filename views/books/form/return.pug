@@ -4,9 +4,12 @@ block title
 block header
     h1 Patron: Return Book
 block content
+  -console.log(attrs)
     -let {id, loaned_on, return_by, returned_on, book, patron} = data.dataValues;
     -loaned_on = loaned_on.slice(0, 10);
     -return_by = return_by.slice(0, 10);
+    include ../../includes/errorMessages
+    +showErrorMessages(attrs)
     p 
         strong Book Title: 
         |#{book.dataValues.title}
@@ -22,6 +25,7 @@ block content
     form(action=`/books/return/${id}` method='post')
         p 
             label(for="returned_on") Returned on: 
-            input(id="returned_on" name="returned_on" type="text" value=`${new Date().toISOString().slice(0,10)}`) 
+            input(id="returned_on" name="returned_on" type="text" 
+                  value=`${attrs ? attrs.returned_on : new Date().toISOString().slice(0,10)}`) 
         p: input(type="submit" value="Return Book")
 

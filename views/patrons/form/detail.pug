@@ -6,25 +6,27 @@ block header
     h1= _title
 block content
     -const {id, first_name, last_name, address, email, library_id, zip_code} = patronData;
+    include ../../includes/errorMessages
+    +showErrorMessages(attrs)
     form(action=`/patrons/details/${id}`, method="post")
         p 
             label(for="first_name") First Name
-            input(id="first_name" name="first_name" type="text" required value=`${first_name}`)
+            input(id="first_name" name="first_name" type="text" value=`${attrs ? attrs.first_name : first_name}`)
         p 
             label(for="last_name") Last Name
-            input(id="last_name" name="last_name" type="text" required value=`${last_name}`)
+            input(id="last_name" name="last_name" type="text" value=`${attrs ? attrs.last_name : last_name}`)
         p 
             label(for="address") Address
-            input(id="address" name="address" type="text" required value=`${address}`)
+            input(id="address" name="address" type="text" value=`${attrs ? attrs.address : address}`)
         p 
             label(for="email") Email 
-            input(id="email" name="email" type="text" required value=`${email}`)
+            input(id="email" name="email" type="text" value=`${attrs ? attrs.email : email}`)
         p 
             label(for="library_id") Library ID
-            input(id="library_id" name="library_id" type="text" required value=`${library_id}`)
+            input(id="library_id" name="library_id" type="text" value=`${attrs ? attrs.library_id : library_id}`)
         p 
             label(for="zip_code") Zip Code
-            input(id="zip_code" name="zip_code" type="text" required value=`${zip_code}`)
+            input(id="zip_code" name="zip_code" type="text" value=`${attrs ? attrs.zip_code : zip_code}`)
 
         p: input(type="submit" value="Update")
     h2 Loan History

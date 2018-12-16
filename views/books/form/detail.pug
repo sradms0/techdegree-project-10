@@ -6,19 +6,21 @@ block header
     h1= _title
 block content
     -const {id, title, author, genre, first_published} = bookData;
+    include ../../includes/errorMessages
+    +showErrorMessages(attrs)
     form(action=`/books/details/${id}` method='post')
         p 
             label(for="title") Title
-            input(id="title" name="title" type="text" required value=`${title}`)
+            input(id="title" name="title" type="text" value=`${attrs ? attrs.title : title}`)
         p 
             label(for="author") Author            
-            input(id="author" name="author" type="text" required value=`${author}`)
+            input(id="author" name="author" type="text" value=`${attrs ? attrs.author : author}`)
         p 
             label(for="genre") Genre            
-            input(id="genre" name="genre" type="text" required value=`${genre}`)
+            input(id="genre" name="genre" type="text" value=`${attrs ? attrs.genre : genre}`)
         p 
             label(for="first_published") First Published 
-            input(id="first_published" name="first_published" type="text" required value=`${first_published}`)
+            input(id="first_published" name="first_published" type="text" value=`${attrs ?  attrs.first_published : first_published}`)
 
         p: input(type="submit" value="Update")
     h2 Loan History

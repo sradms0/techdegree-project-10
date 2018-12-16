@@ -1,8 +1,10 @@
 'use strict';
 
 const express                   = require('express');
+const querystring               = require('querystring');
 const { sequelize: {models} }   = require('../models');
 const loanArgs                  = require('../utils/loan-args');
+const {checkAttrs, collectMsgs} = require('../utils/error-form');
 const {patrons} = models;
 
 const router = express.Router();
@@ -27,7 +29,8 @@ router.get('/details/:id', (req, res) => {
             res.render(
                 'patrons/form/detail', { 
                     patronData: patronData.dataValues, 
-                    loanData
+                    loanData,
+                    attrs: checkAttrs(req.query, 'patron')
                 }
             )
         })
@@ -41,16 +44,24 @@ router.post('/details/:id', (req, res) => {
     .then(patron => {
         patron.update(req.body)
         .then(() => res.redirect('/patrons/all'))
-        .catch(err => console.log(err));
+        .catch(err => {
+            res.redirect(
+                `/patrons/details/${pk}?${querystring.stringify(req.body)}&${querystring.stringify( {msgs: collectMsgs(err)} )}`
+            );
+        });
     })
     .catch(err => console.log(err));
 });
 
-router.get('/new', (req, res) => res.render('patrons/form/new'))
+router.get('/new', (req, res) => res.render('patrons/form/new', {attrs: checkAttrs(req.query, 'patron')}));
 router.post('/new', (req, res) => {
     patrons.create(req.body)
     .then(() => res.redirect('/patrons/all'))
-    .catch(err => console.log(err));
+    .catch(err => {
+        res.redirect(
+        `/patrons/new?${querystring.stringify(req.body)}&${querystring.stringify( {msgs: collectMsgs(err)} )}`
+        );
+    });
 });
 
 module.exports = router;

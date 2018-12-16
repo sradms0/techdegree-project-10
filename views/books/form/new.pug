@@ -5,18 +5,20 @@ block title
 block header
     h1= _title
 block content
+    include ../../includes/errorMessages
+    +showErrorMessages(attrs)
     form(action='/books/new' method='post')
         p 
             label(for="title") Title
-            input(id="title" name="title" type="text" required)
+            input(id="title" name="title" type="text" value=`${attrs ? attrs.title : ''}`)
         p 
             label(for="author") Author            
-            input(id="author" name="author" type="text" required)
+            input(id="author" name="author" type="text" value=`${attrs ? attrs.author : ''}`)
         p 
             label(for="genre") Genre            
-            input(id="genre" name="genre" type="text" required)
+            input(id="genre" name="genre" type="text" value=`${attrs ? attrs.genre : ''}`)
         p 
             label(for="first_published") First Published 
-            input(id="first_published" name="first_published" type="text" required)
+            input(id="first_published" name="first_published" type="text" value=`${attrs ? attrs.first_published : ''}`)
 
         p: input(type="submit" value="Create New Book")

@@ -1,0 +1,5 @@
+mixin showErrorMessages(attrs)
+  if attrs
+    -let msgs = Array.isArray(attrs.msgs) ? attrs.msgs : [attrs.msgs];
+    each msg in msgs
+      p(class="error")= msg

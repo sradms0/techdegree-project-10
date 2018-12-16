@@ -1,9 +1,11 @@
 'use strict';
 
 const express                   = require('express');
+const querystring               = require('querystring');
 const { Op }                    = require('sequelize');
 const { sequelize: {models} }   = require('../models');
 const loanArgs                  = require('../utils/loan-args');
+const {checkAttrs, collectMsgs} = require('../utils/error-form');
 const {loans} = models;
 
 const router = express.Router();
@@ -30,11 +32,11 @@ router.get('/checked', (req, res) => {
     .catch(err => console.log(err));
 });
 
-router.get('/new', (req,res) => {
+router.get('/new', (req, res) => {
     models.books.findAll()
     .then(bookData => {
         models.patrons.findAll()
-        .then(patronData => res.render('loans/form/new', { bookData, patronData }))
+        .then(patronData => res.render('loans/form/new', { bookData, patronData , attrs: checkAttrs(req.query, 'loan')}))
         .catch(err => console.log(err));
     })
     .catch(err => console.log(err));
@@ -42,7 +44,11 @@ router.get('/new', (req,res) => {
 router.post('/new', (req,res) => {
     loans.create(req.body)
     .then(() => res.redirect('/loans/all'))
-    .catch(err => console.log(err));
+    .catch(err => {
+        res.redirect(
+        `/loans/new?${querystring.stringify(req.body)}&${querystring.stringify( {msgs: collectMsgs(err)} )}`
+        );
+    });
 });
 
 module.exports = router;
