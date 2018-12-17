@@ -7,27 +7,47 @@ const { sequelize: {models} }           = require('../models');
 const bookArgs                          = require('../utils/book-args');
 const loanArgs                          = require('../utils/loan-args');
 const {checkAttrs, collectMsgs}         = require('../utils/error-form');
+const {range, perPage}                  = require('../utils/pagination');
 const {books} = models;
 
 const router = express.Router();
 
-router.get(/(\/|return|details)$/, (req, res) => res.redirect('/books/all'));
+router.get(/(\/|all|return|details)$/, (req, res) => res.redirect('/books/all/1'));
+router.get('/overdue', (req, res) => res.redirect('/books/overdue/1'));
+router.get('/checked', (req, res) => res.redirect('/books/checked/1'))
 
-router.get('/all', (req, res) => {
-    books.findAll()
-    .then(data => res.render('books/table', {data, filter: 'All'}))
+router.get('/all/:page', (req, res) => {
+    const page = req.params.page;
+    books.count()
+    .then(total => {
+        books.findAll(range(page))
+        .then(data => res.render('books/table', {data, total, page, perPage, filter: 'All'}))
+        .catch(err => console.log(err));
+    })
     .catch(err => console.log(err));
 });
 
-router.get('/overdue', (req, res) => {
-    books.findAll({include: bookArgs.overdue()})
-    .then(data => res.render('books/table', {data, filter: 'Overdue'}))
+router.get('/overdue/:page', (req, res) => {
+    const page = req.params.page;
+    const includes = {include: bookArgs.overdue()};
+    books.count(includes)
+    .then(total => {
+        books.findAll({ ...includes, ...range(req.params.page) })
+        .then(data => res.render('books/table', {data, total, page, perPage, filter: 'Overdue'}))
+        .catch(err => console.log(err));
+    })
     .catch(err => console.log(err));
 });
 
-router.get('/checked', (req, res) => {
-    books.findAll({include: bookArgs.checked()})
-    .then(data => res.render('books/table', {data, filter: 'Checked Out'}))
+router.get('/checked/:page', (req, res) => {
+    const page = req.params.page;
+    const includes = {include: bookArgs.checked()};
+    books.count(includes)
+    .then(total => {
+        books.findAll({ ...includes, ...range(req.params.page) })
+        .then(data => res.render('books/table', {data, total, page, perPage, filter: 'Checked Out'}))
+        .catch(err => console.log(err));
+    })
     .catch(err => console.log(err));
 });
 

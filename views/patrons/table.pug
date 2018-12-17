@@ -23,4 +23,5 @@ block content
                     td= row.library_id
                     td= row.zip_code
 
-
+    include ../includes/pagination
+    +pagination('patrons', 'all', total, perPage)

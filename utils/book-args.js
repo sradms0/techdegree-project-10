@@ -7,8 +7,7 @@ const overdue = () => {
     return [{
         model:          models.loans, 
         attributes:     [],
-        where:          { return_by: { [Op.lt]: new Date() } },
-        returned_on:    null,
+        where:          { returned_on: null, return_by: { [Op.lt]: new Date() } },
         required:       true 
     }];
 };

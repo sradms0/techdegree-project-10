@@ -5,15 +5,21 @@ const querystring               = require('querystring');
 const { sequelize: {models} }   = require('../models');
 const loanArgs                  = require('../utils/loan-args');
 const {checkAttrs, collectMsgs} = require('../utils/error-form');
+const {range, perPage}          = require('../utils/pagination');
 const {patrons} = models;
 
 const router = express.Router();
 
-router.get(/(\/|details)$/, (req, res) => res.redirect('/patrons/all'));
+router.get(/(\/|all|details)$/, (req, res) => res.redirect('/patrons/all/1'));
 
-router.get('/all', (req, res) => {
-    patrons.findAll()
-    .then(data => res.render('patrons/table', {data}))
+router.get('/all/:page', (req, res) => {
+    const page = req.params.page
+    patrons.count()
+    .then(total => {
+        patrons.findAll(range(page))
+        .then(data => res.render('patrons/table', {data, total, page, perPage}))
+        .catch(err => console.log(err));
+    })
     .catch(err => console.log(err));
 });
 

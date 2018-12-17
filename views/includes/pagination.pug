@@ -1,0 +1,7 @@
+mixin pagination(entity, filter, total, perPage)
+    -const pages = Math.ceil(total / perPage);
+    p= `${page} of ${pages}`
+    nav.pagination
+        ul
+            each _, i in Array(pages)
+                li: a(href=`/${entity}/${filter}/${i+1}`)= i+1

@@ -7,7 +7,11 @@ block header
     h1= _title
     p: a(href="new", class="button", class="button") Create New Loan
 block content
+    // set filter for pagination links (to match table filter route)
+    -filter = filter === 'Checked Out' ? 'checked' : filter.toLowerCase();
     include ../includes/filters
     include includes/table
+    include ../includes/pagination
     +filters('loans')
     +loanHistory(data)
+    +pagination('loans', filter, total, perPage)

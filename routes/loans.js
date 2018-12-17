@@ -6,29 +6,48 @@ const { Op }                    = require('sequelize');
 const { sequelize: {models} }   = require('../models');
 const loanArgs                  = require('../utils/loan-args');
 const {checkAttrs, collectMsgs} = require('../utils/error-form');
+const {range, perPage}          = require('../utils/pagination');
 const {loans} = models;
 
 const router = express.Router();
 
-const parseDate = (string) => new Date(string).toISOString().slice(0,10);
+router.get(/(\/|all)$/,(req, res) => res.redirect('/loans/all/1'));
+router.get('/overdue', (req, res) => res.redirect('/loans/overdue/1'));
+router.get('/checked', (req, res) => res.redirect('/loans/checked/1'))
 
-router.get('/', (req, res) => res.redirect('/details/all'));
-
-router.get('/all', (req, res) => {
-    loans.findAll({ include: loanArgs.associates() })
-    .then(data => res.render('loans/table', {data, filter: 'All'}))
+router.get('/all/:page', (req, res) => {
+    const page = req.params.page;
+    const includes = { include: loanArgs.associates() };
+    loans.count(includes)
+    .then(total => {
+        loans.findAll({ ...includes, ...range(page) })
+        .then(data => res.render('loans/table', {data, total, page, perPage, filter: 'All'}))
+        .catch(err => console.log(err))
+    })
     .catch(err => console.log(err))
 });
 
-router.get('/overdue', (req, res) => {
-    loans.findAll({ include: loanArgs.associates(), where: loanArgs.overdue()})
-    .then(data => res.render('loans/table', {data, filter: 'Overdue'}))
+router.get('/overdue/:page', (req, res) => {
+    const page = req.params.page;
+    const includes = { include: loanArgs.associates(), where: loanArgs.overdue() };
+    loans.count(includes)
+    .then(total => {
+        loans.findAll({ ...includes, ...range(page) })
+        .then(data => res.render('loans/table', {data, total, page, perPage, filter: 'Overdue'}))
+        .catch(err => console.log(err));
+    })
     .catch(err => console.log(err));
 });
 
-router.get('/checked', (req, res) => {
-    loans.findAll({ include: loanArgs.associates(), where: loanArgs.checked()})
-    .then(data => res.render('loans/table', {data, filter: 'Checked Out'}))
+router.get('/checked/:page', (req, res) => {
+    const page = req.params.page;
+    const includes = { include: loanArgs.associates(), where: loanArgs.checked() };
+    loans.count(includes)
+    .then(total => {
+        loans.findAll({ ...includes, ...range(page) })
+        .then(data => res.render('loans/table', {data, total, page, perPage, filter: 'Checked Out'}))
+        .catch(err => console.log(err));
+    })
     .catch(err => console.log(err));
 });
 
