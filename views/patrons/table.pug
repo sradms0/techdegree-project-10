@@ -6,6 +6,8 @@ block header
     h1= _title
     p: a(href="/patrons/new", class="button", class="button") Create New Patron
 block content
+    include ../includes/pagination
+    +pagination('patrons', 'all', total, perPage)
     table
         thead
             tr
@@ -23,5 +25,3 @@ block content
                     td= row.library_id
                     td= row.zip_code
 
-    include ../includes/pagination
-    +pagination('patrons', 'all', total, perPage)
