@@ -6,8 +6,12 @@ block header
     h1= _title
     p: a(href="/books/new", class="button", class="button") Create New Book
 block content
+    // set filter for pagination links (to match table filter route)
+    -filter = filter === 'Checked Out' ? 'checked' : filter.toLowerCase();
     include ../includes/filters
+    include ../includes/pagination
     +filters('books')
+    +pagination('books', filter, total, perPage)
     table
         thead
             tr
@@ -23,7 +27,3 @@ block content
                     td= row.genre
                     td= row.first_published
 
-    // set filter for pagination links (to match table filter route)
-    -filter = filter === 'Checked Out' ? 'checked' : filter.toLowerCase();
-    include ../includes/pagination
-    +pagination('books', filter, total, perPage)
