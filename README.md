@@ -182,5 +182,5 @@ $ npm start
         - [X] When form labels are clicked, they should bring focus to corresponding input.
 
 * attempt at exceeding expectations
-    - [ ] Include pagination for both the patrons listing and books listing pages.
+    - [X] Include pagination for both the patrons listing and books listing pages.
     - [ ] Include search fields for both the patrons listing and books listing pages.
