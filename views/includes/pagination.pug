@@ -1,7 +1,10 @@
-mixin pagination(entity, filter, total, perPage)
+mixin pagination(entity, filter, total, perPage, search=false, param='', val='')
     -const pages = Math.ceil(total / perPage);
+    -let _href = `/${entity}/${filter}/`;
+    -_href += search ? `search?by=${param}&containing=${val}&page=` : '';
     nav.pagination
         ul
             each _, i in Array(pages)
-                li: a(href=`/${entity}/${filter}/${i+1}`)= i+1
-    p= `${page} of ${pages}`
+                li: a(href=`${_href}${i+1}`)= i+1
+    // if no results, total is 0, so set current page to 0
+    p= `${ total ? page : total} of ${pages}`

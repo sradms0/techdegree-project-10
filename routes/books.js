@@ -16,6 +16,24 @@ router.get(/(\/|all|return|details)$/, (req, res) => res.redirect('/books/all/1'
 router.get('/overdue', (req, res) => res.redirect('/books/overdue/1'));
 router.get('/checked', (req, res) => res.redirect('/books/checked/1'))
 
+router.get('/all/search', (req, res) => {
+    const {by, containing, page} = req.query;
+    const keys      = Object.keys(books.attributes);
+    const attribute = keys[ keys.indexOf(by) ]
+    const includes  = { where: { [attribute]: { [Op.like]: `%${containing}%` } }}
+    books.count(includes)
+    .then(total => {
+        books.findAll({ ...includes, ...range(page)})
+        .then(data => {
+            res.render('books/table', {
+                    data, total, page, perPage, 
+                    search: true, param: attribute, val: containing,
+                    filter: 'All'
+                })
+        });
+    })
+});
+
 router.get('/all/:page', (req, res) => {
     const page = req.params.page;
     books.count()
@@ -27,7 +45,25 @@ router.get('/all/:page', (req, res) => {
     .catch(err => console.log(err));
 });
 
+router.get('/overdue/search', (req, res) => {
+    const {by, containing, page} = req.query;
+    const keys      = Object.keys(books.attributes);
+    const attribute = keys[ keys.indexOf(by) ]
+    const includes  = { include: bookArgs.overdue(), where: { [attribute]: { [Op.like]: `%${containing}%` } }}
+    books.count(includes)
+    .then(total => {
+        books.findAll({ ...includes, ...range(page)})
+        .then(data => {
+            res.render('books/table', {
+                    data, total, page, perPage, 
+                    search: true, param: attribute, val: containing,
+                    filter: 'Overdue'
+                })
+        });
+    })
+});
 router.get('/overdue/:page', (req, res) => {
+    console.log('yoo......');
     const page = req.params.page;
     const includes = {include: bookArgs.overdue()};
     books.count(includes)
@@ -39,6 +75,23 @@ router.get('/overdue/:page', (req, res) => {
     .catch(err => console.log(err));
 });
 
+router.get('/checked/search', (req, res) => {
+    const {by, containing, page} = req.query;
+    const keys      = Object.keys(books.attributes);
+    const attribute = keys[ keys.indexOf(by) ]
+    const includes  = { include: bookArgs.checked(), where: { [attribute]: { [Op.like]: `%${containing}%` } }}
+    books.count(includes)
+    .then(total => {
+        books.findAll({ ...includes, ...range(page)})
+        .then(data => {
+            res.render('books/table', {
+                    data, total, page, perPage, 
+                    search: true, param: attribute, val: containing,
+                    filter: 'Checked Out'
+                })
+        });
+    })
+});
 router.get('/checked/:page', (req, res) => {
     const page = req.params.page;
     const includes = {include: bookArgs.checked()};
@@ -49,6 +102,12 @@ router.get('/checked/:page', (req, res) => {
         .catch(err => console.log(err));
     })
     .catch(err => console.log(err));
+});
+
+router.post('/:filter/search/:param', (req, res) => {
+    const {val}             = req.body;
+    const {filter, param}   = req.params;
+    res.redirect(`/books/${filter}/search?by=${param}&containing=${val}&page=1`)
 });
 
 router.get('/details/:id', (req, res) => {

@@ -1,0 +1,24 @@
+form(class="search" action=`/patrons/all/search/first_name` method='post')
+    p 
+        label(for="first-name-search") First Name
+        input(id="first-name-search" name="val" type="text")
+        input(type="submit" value="Search")
+
+form(class="search" action=`/patrons/all/search/last_name` method='post')
+    p 
+        label(for="last-name-search") Last Name
+        input(id="last-name-search" name="val" type="text")
+        input(type="submit" value="Search")
+
+form(class="search" action=`/patrons/all/search/address` method='post')
+    p 
+        label(for="address-search") Address
+        input(id="address-search" name="val" type="text")
+        input(type="submit" value="Search")
+
+form(class="search" action=`/patrons/all/search/email` method='post')
+    p 
+        label(for="email-search") Email
+        input(id="email-search" name="val" type="text")
+        input(type="submit" value="Search")
+

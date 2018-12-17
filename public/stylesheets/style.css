@@ -22,6 +22,9 @@ a.button, input[type=submit] {
 form a.button, input[type=submit] {
   margin-left: 140px;
 }
+form.search input[type=submit]{
+  margin-left: 0px;
+}
 input[type=submit] {
   border: 0;
 }
@@ -81,6 +84,10 @@ label {
   font-weight: bold;
   min-width: 130px;
   display: inline-block;
+}
+form.search label {
+  font-weight: normal;
+  min-width: 110px;
 }
 input {
   padding: 10px;
