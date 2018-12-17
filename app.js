@@ -24,6 +24,19 @@ app.use('/books',    books);
 app.use('/patrons',  patrons);
 app.use('/loans',    loans);
 
+// handle invalid routes:
+app.use((req, res, next) => {
+    const err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+},
+(err, req, res, next) => {
+    res.locals.error = err;
+    res.status(err.status);
+    res.render('error', err);
+    console.log(`${err.message} (${err.status})`);
+});
+
 sequelize.sync()
 .then(() => {
     app.listen(process.env.PORT || 3000, () => console.log('Application running on localhost:3000'));

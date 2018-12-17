@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    section.error
+        h1= `${error.message} - Status: ${error.status}`
+        img(src='/static/img/shoulder_shrug.jpg')
+        br
+        a.button(href='/') Home
+        h2= error.status
+        pre= error.stack

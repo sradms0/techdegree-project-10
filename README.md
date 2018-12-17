@@ -183,4 +183,4 @@ $ npm start
 
 * attempt at exceeding expectations
     - [X] Include pagination for both the patrons listing and books listing pages.
-    - [ ] Include search fields for both the patrons listing and books listing pages.
+    - [X] Include search fields for both the patrons listing and books listing pages.
