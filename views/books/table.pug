@@ -4,7 +4,7 @@ block title
     title= _title
 block header
     h1= _title
-    p: a(href="new", class="button", class="button") Create New Book
+    p: a(href="/books/new", class="button", class="button") Create New Book
 block content
     include ../includes/filters
     +filters('books')
