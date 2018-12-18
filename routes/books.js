@@ -86,7 +86,6 @@ router.get('/overdue/search', (req, res) => {
     });
 });
 router.get('/overdue/:page', (req, res) => {
-    console.log('yoo......');
     const page = req.params.page;
     const includes = {include: bookArgs.overdue()};
     books.count(includes)
