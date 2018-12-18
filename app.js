@@ -34,7 +34,6 @@ app.use((req, res, next) => {
     res.locals.error = err;
     res.status(err.status);
     res.render('error', err);
-    console.log(`${err.message} (${err.status})`);
 });
 
 sequelize.sync()
