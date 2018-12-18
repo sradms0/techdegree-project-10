@@ -22,9 +22,15 @@ router.get('/all/:page', (req, res) => {
     .then(total => {
         loans.findAll({ ...includes, ...range(page) })
         .then(data => res.render('loans/table', {data, total, page, perPage, filter: 'All'}))
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err)
+            res.redirect('/loans/all/1');
+        });
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+        console.log(err)
+        res.redirect('/');
+    });
 });
 
 router.get('/overdue/:page', (req, res) => {
@@ -34,9 +40,15 @@ router.get('/overdue/:page', (req, res) => {
     .then(total => {
         loans.findAll({ ...includes, ...range(page) })
         .then(data => res.render('loans/table', {data, total, page, perPage, filter: 'Overdue'}))
-        .catch(err => console.log(err));
+        .catch(err => {
+            console.log(err)
+            res.redirect('/loans/all/1');
+        });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+        console.log(err)
+        res.redirect('/');
+    });
 });
 
 router.get('/checked/:page', (req, res) => {
@@ -46,9 +58,15 @@ router.get('/checked/:page', (req, res) => {
     .then(total => {
         loans.findAll({ ...includes, ...range(page) })
         .then(data => res.render('loans/table', {data, total, page, perPage, filter: 'Checked Out'}))
-        .catch(err => console.log(err));
+        .catch(err => {
+            console.log(err)
+            res.redirect('/loans/all/1');
+        });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+        console.log(err)
+        res.redirect('/');
+    });
 });
 
 router.get('/new', (req, res) => {
@@ -56,9 +74,15 @@ router.get('/new', (req, res) => {
     .then(bookData => {
         models.patrons.findAll()
         .then(patronData => res.render('loans/form/new', { bookData, patronData , attrs: checkAttrs(req.query, 'loan')}))
-        .catch(err => console.log(err));
+        .catch(err => {
+            console.log(err)
+            res.redirect('/loans/all/1');
+        });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+        console.log(err)
+        res.redirect('/loans/all/1');
+    });
 });
 router.post('/new', (req,res) => {
     loans.create(req.body)

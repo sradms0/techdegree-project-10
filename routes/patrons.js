@@ -27,8 +27,16 @@ router.get('/all/search', (req, res) => {
                     search: true, param: attribute, val: containing,
                     filter: 'All'
                 })
+        })
+        .catch(err => {
+            console.log(err)
+            res.redirect('/patrons/all/1');
         });
     })
+    .catch(err => {
+        console.log(err)
+        res.redirect('/');
+    });
 });
 router.get('/all/:page', (req, res) => {
     const page = req.params.page
@@ -36,9 +44,15 @@ router.get('/all/:page', (req, res) => {
     .then(total => {
         patrons.findAll(range(page))
         .then(data => res.render('patrons/table', {data, total, page, perPage}))
-        .catch(err => console.log(err));
+        .catch(err => {
+            console.log(err)
+            res.redirect('/patrons/all/1');
+        });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+        console.log(err)
+        res.redirect('/');
+    });
 });
 
 router.post('/all/search/:param', (req, res) => {
@@ -65,9 +79,15 @@ router.get('/details/:id', (req, res) => {
                 }
             )
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            console.log(err)
+            res.redirect('/patrons/all/1');
+        });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+        console.log(err)
+        res.redirect('/');
+    });
 });
 router.post('/details/:id', (req, res) => {
     const pk = req.params.id;
@@ -81,7 +101,10 @@ router.post('/details/:id', (req, res) => {
             );
         });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+        console.log(err)
+        res.redirect('/');
+    });
 });
 
 router.get('/new', (req, res) => res.render('patrons/form/new', {attrs: checkAttrs(req.query, 'patron')}));

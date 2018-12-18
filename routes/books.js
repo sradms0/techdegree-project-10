@@ -30,8 +30,16 @@ router.get('/all/search', (req, res) => {
                     search: true, param: attribute, val: containing,
                     filter: 'All'
                 })
+        })
+        .catch(err => {
+            console.log(err)
+            res.redirect('/books/all/1');
         });
     })
+    .catch(err => {
+        console.log(err)
+        res.redirect('/');
+    });
 });
 
 router.get('/all/:page', (req, res) => {
@@ -40,9 +48,16 @@ router.get('/all/:page', (req, res) => {
     .then(total => {
         books.findAll(range(page))
         .then(data => res.render('books/table', {data, total, page, perPage, filter: 'All'}))
-        .catch(err => console.log(err));
+        .catch(err => {
+            console.log(err)
+            res.redirect('/books/all/1');
+        });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+        console.log(err)
+        res.redirect('/');
+    });
+
 });
 
 router.get('/overdue/search', (req, res) => {
@@ -59,8 +74,16 @@ router.get('/overdue/search', (req, res) => {
                     search: true, param: attribute, val: containing,
                     filter: 'Overdue'
                 })
+        })
+        .catch(err => {
+            console.log(err)
+            res.redirect('/books/overdue/1');
         });
     })
+    .catch(err => {
+        console.log(err)
+        res.redirect('/');
+    });
 });
 router.get('/overdue/:page', (req, res) => {
     console.log('yoo......');
@@ -70,9 +93,15 @@ router.get('/overdue/:page', (req, res) => {
     .then(total => {
         books.findAll({ ...includes, ...range(req.params.page) })
         .then(data => res.render('books/table', {data, total, page, perPage, filter: 'Overdue'}))
-        .catch(err => console.log(err));
+        .catch(err => {
+            console.log(err)
+            res.redirect('/books/overdue/1');
+        });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+        console.log(err)
+        res.redirect('/');
+    });
 });
 
 router.get('/checked/search', (req, res) => {
@@ -89,8 +118,16 @@ router.get('/checked/search', (req, res) => {
                     search: true, param: attribute, val: containing,
                     filter: 'Checked Out'
                 })
+        })
+        .catch(err => {
+            console.log(err)
+            res.redirect('/books/checked/1');
         });
     })
+    .catch(err => {
+        console.log(err)
+        res.redirect('/');
+    });
 });
 router.get('/checked/:page', (req, res) => {
     const page = req.params.page;
@@ -99,9 +136,15 @@ router.get('/checked/:page', (req, res) => {
     .then(total => {
         books.findAll({ ...includes, ...range(req.params.page) })
         .then(data => res.render('books/table', {data, total, page, perPage, filter: 'Checked Out'}))
-        .catch(err => console.log(err));
+        .catch(err => {
+            console.log(err)
+            res.redirect('/books/checked/1');
+        });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+        console.log(err)
+        res.redirect('/');
+    });
 });
 
 router.post('/:filter/search/:param', (req, res) => {
@@ -127,9 +170,15 @@ router.get('/details/:id', (req, res) => {
                 }
             )
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            console.log(err)
+            res.redirect('/books/all/1');
+        });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+        console.log(err)
+        res.redirect('/');
+    });
 });
 router.post('/details/:id', (req, res) => {
     const pk = req.params.id;
@@ -141,10 +190,12 @@ router.post('/details/:id', (req, res) => {
             res.redirect(
                 `/books/details/${pk}?${querystring.stringify(req.body)}&${querystring.stringify( {msgs: collectMsgs(err)} )}`
             );
-        });
-
+        })
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+        console.log(err)
+        res.redirect('/');
+    });
 })
 
 router.get('/return/:id', (req, res) => {
@@ -154,7 +205,10 @@ router.get('/return/:id', (req, res) => {
         where: {id: pk, returned_on: null}
     })
     .then(data => res.render('books/form/return', {data: data[0], attrs: checkAttrs(req.query, 'return')}))
-    .catch(err => console.log(err));
+    .catch(err => {
+        console.log(err)
+        res.redirect('/books/all/1');
+    });
 });
 router.post('/return/:id', (req, res) => {
     const pk = req.params.id;
@@ -168,7 +222,10 @@ router.post('/return/:id', (req, res) => {
             );
         })
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+        console.log(err)
+        res.redirect('/');
+    });
 })
 
 router.get('/new', (req,res) => {
