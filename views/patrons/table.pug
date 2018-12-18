@@ -8,10 +8,11 @@ block header
     br
 block content
     include ../includes/pagination
-    include includes/search
-    if param && val
-        p= `${param} search results for "${val}"`
-    +pagination('patrons', 'all', total, perPage, search, param, val)
+    include ../includes/search
+    +search('patrons', 'all')
+    if search
+        p= `search results containing "${containing}"`
+    +pagination('patrons', 'all', total, perPage, search, containing)
     table
         thead
             tr

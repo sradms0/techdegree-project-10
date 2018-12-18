@@ -20,5 +20,17 @@ const checked = () => {
     }];
 };
 
-module.exports.overdue =  overdue;
-module.exports.checked =  checked;
+const searchParams = containing => {
+    return { 
+        [Op.or]: {
+            title:          { [Op.like]: `%${containing}%` },
+            author:         { [Op.like]: `%${containing}%` },
+            genre:          { [Op.like]: `%${containing}%` },
+            first_published:{ [Op.like]: `%${containing}%` }
+        }
+    }
+}
+
+module.exports.overdue      =  overdue;
+module.exports.checked      =  checked;
+module.exports.searchParams =  searchParams;

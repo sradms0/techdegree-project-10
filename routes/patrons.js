@@ -5,6 +5,7 @@ const querystring               = require('querystring');
 const { Op }                    = require('sequelize');
 const { sequelize: {models} }   = require('../models');
 const loanArgs                  = require('../utils/loan-args');
+const patronArgs                = require('../utils/patron-args');
 const {checkAttrs, collectMsgs} = require('../utils/error-form');
 const {range, perPage}          = require('../utils/pagination');
 const {patrons} = models;
@@ -13,18 +14,17 @@ const router = express.Router();
 
 router.get(/(\/|all|details)$/, (req, res) => res.redirect('/patrons/all/1'));
 
+// GET ALL: SEARCH
 router.get('/all/search', (req, res) => {
-    const {by, containing, page} = req.query;
-    const keys      = Object.keys(patrons.attributes);
-    const attribute = keys[ keys.indexOf(by) ]
-    const includes  = { where: { [attribute]: { [Op.like]: `%${containing}%` } }}
+    const {containing, page} = req.query;
+    const includes  = { where: patronArgs.searchParams(containing) };
     patrons.count(includes)
     .then(total => {
         patrons.findAll({ ...includes, ...range(page)})
         .then(data => {
             res.render('patrons/table', {
                     data, total, page, perPage, 
-                    search: true, param: attribute, val: containing,
+                    search: true, containing,
                     filter: 'All'
                 })
         })
@@ -38,6 +38,7 @@ router.get('/all/search', (req, res) => {
         res.redirect('/');
     });
 });
+// GET ALL
 router.get('/all/:page', (req, res) => {
     const page = req.params.page
     patrons.count()
@@ -54,14 +55,13 @@ router.get('/all/:page', (req, res) => {
         res.redirect('/');
     });
 });
-
-router.post('/all/search/:param', (req, res) => {
-    const {val}             = req.body;
-    const {param}           = req.params;
-    res.redirect(`/patrons/all/search?by=${param}&containing=${val}&page=1`)
+// POST SEARCH
+router.post('/all/search', (req, res) => {
+    const {containing} = req.body;
+    res.redirect(`/patrons/all/search?containing=${containing}&page=1`)
 });
 
-
+// GET DETAILS
 router.get('/details/:id', (req, res) => {
     const pk            = req.params.id;
     const associates    = loanArgs.associates();
@@ -89,6 +89,7 @@ router.get('/details/:id', (req, res) => {
         res.redirect('/');
     });
 });
+//POST DETAILS
 router.post('/details/:id', (req, res) => {
     const pk = req.params.id;
     patrons.findByPk(pk)
@@ -107,6 +108,7 @@ router.post('/details/:id', (req, res) => {
     });
 });
 
+// GET NEW
 router.get('/new', (req, res) => res.render('patrons/form/new', {attrs: checkAttrs(req.query, 'patron')}));
 router.post('/new', (req, res) => {
     patrons.create(req.body)

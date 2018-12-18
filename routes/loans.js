@@ -15,6 +15,7 @@ router.get(/(\/|all)$/,(req, res) => res.redirect('/loans/all/1'));
 router.get('/overdue', (req, res) => res.redirect('/loans/overdue/1'));
 router.get('/checked', (req, res) => res.redirect('/loans/checked/1'))
 
+// GET ALL
 router.get('/all/:page', (req, res) => {
     const page = req.params.page;
     const includes = { include: loanArgs.associates() };
@@ -32,7 +33,7 @@ router.get('/all/:page', (req, res) => {
         res.redirect('/');
     });
 });
-
+// GET OVERDUE
 router.get('/overdue/:page', (req, res) => {
     const page = req.params.page;
     const includes = { include: loanArgs.associates(), where: loanArgs.overdue() };
@@ -50,7 +51,7 @@ router.get('/overdue/:page', (req, res) => {
         res.redirect('/');
     });
 });
-
+// GET CHECKED
 router.get('/checked/:page', (req, res) => {
     const page = req.params.page;
     const includes = { include: loanArgs.associates(), where: loanArgs.checked() };
@@ -68,7 +69,7 @@ router.get('/checked/:page', (req, res) => {
         res.redirect('/');
     });
 });
-
+// GET NEW
 router.get('/new', (req, res) => {
     models.books.findAll()
     .then(bookData => {
@@ -84,6 +85,7 @@ router.get('/new', (req, res) => {
         res.redirect('/loans/all/1');
     });
 });
+// POST NEW
 router.post('/new', (req,res) => {
     loans.create(req.body)
     .then(() => res.redirect('/loans/all'))

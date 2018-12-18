@@ -1,7 +1,7 @@
-mixin pagination(entity, filter, total, perPage, search=false, param='', val='')
+mixin pagination(entity, filter, total, perPage, search=false, containing='')
     -const pages = Math.ceil(total / perPage);
     -let _href = `/${entity}/${filter}/`;
-    -_href += search ? `search?by=${param}&containing=${val}&page=` : '';
+    -_href += search ? `search?containing=${containing}&page=` : '';
     nav.pagination
         ul
             each _, i in Array(pages)

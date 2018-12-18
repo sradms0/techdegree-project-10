@@ -10,12 +10,12 @@ block content
     -filter = filter === 'Checked Out' ? 'checked' : filter.toLowerCase();
     include ../includes/filters
     include ../includes/pagination
-    include includes/search
+    include ../includes/search
     +filters('books')
-    +search(filter)
-    if param && val
-        p= `${param} search results for "${val}"`
-    +pagination('books', filter, total, perPage, search, param, val)
+    +search('books', filter)
+    if search
+        p= `search results containing "${containing}"`
+    +pagination('books', filter, total, perPage, search, containing)
     table
         thead
             tr

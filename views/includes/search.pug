@@ -1,0 +1,5 @@
+mixin search(entity,filter)
+    form(class="search" action=`/${entity}/${filter}/search` method='post')
+        p 
+            input(id="title-search" name="containing" type="text")
+            input(type="submit" value="Search")
